@@ -1,0 +1,27 @@
+Apache2:
+
+sudo a2enmod cgid
+systemctl start apache2 ; systemctl status apache2
+systemctl stop apache2 ; systemctl status apache2
+systemctl restart apache2 ; systemctl status apache2
+___________________________________________________________
+BMP180:
+
+// instal wiringPi
+sudo gcc -Wall -o bmp180 bmp180.c -lwiringPi -lm
+sudo chown root bmp.cgi
+sudo chmod +s bmp.cgi
+sudo cp bmp.cgi  /usr/lib/cgi-bin
+___________________________________________________________
+Prog:
+
+g++ -o prog.cgi RPiCgicc.cpp -lcgicc;
+chmod 755 prog.cgi;
+sudo cp prog.cgi /usr/lib/cgi-bin
+___________________________________________________________
+Web-access:
+
+http://localhost/cgi-bin/prog.cgi?cmd=ls
+or
+http://192.168.1.121:8080/cgi-bin/prog.cgi
+___________________________________________________________
