@@ -29,7 +29,8 @@ std::string exec(const char* cmd) {
 int main () {
 
    std::map<std::string, std::string> commands;
-   commands["ls"] = "./bmp180.cgi"; // ./script later
+   commands["bmp"] = "./bmp180.cgi";
+   commands["ina"] = "./ina.cgi";
    commands["relayOn"] = "Relay is ON\n";
    cgicc::Cgicc formData;
    // show input data on screen
@@ -39,17 +40,21 @@ int main () {
    std::cout << "<title>Sensors data</title>\n";
    std::cout << "</head>\n";
    std::cout << "<body>\n";
-   // show current data
-   std::cout << "Voltage = \n";
-   std::cout << "<br/>\n";
-   std::cout << "Temperature = "<<std::endl;
-   std::cout << "<br/>\n";   
+       
    // current command
    cgicc::form_iterator fi = formData.getElement("cmd");  
    if( !fi->isEmpty() &&fi != (*formData).end()) {
-      if(commands[fi->getValue()][0]=='.') {
-      // execute bash-script
-         std::cout<<exec(commands[fi->getValue()].c_str());
+      if(commands[fi->getValue()][2]=='b') {
+         // execute bash-script
+         std::cout << "Temperature = ";
+         std::cout<<exec(commands[fi->getValue()].c_str())<<std::endl;
+         std::cout << "<br/>\n";
+      }
+      else if (commands[fi->getValue()][2]=='i') {
+         // execute bash-script
+         std::cout << "Voltage = ";
+         std::cout<<exec(commands[fi->getValue()].c_str())<<std::endl;
+         std::cout << "<br/>\n";
       }
       else {
       // perform some internal logic
