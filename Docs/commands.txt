@@ -1,17 +1,22 @@
 Apache2:
 
-sudo a2enmod cgid
+sudo a2enmod cgid;
 systemctl start apache2 ; systemctl status apache2
 systemctl stop apache2 ; systemctl status apache2
 systemctl restart apache2 ; systemctl status apache2
 ___________________________________________________________
 BMP180:
 
-// instal wiringPi
 sudo gcc -Wall -o bmp180 bmp180.c -lwiringPi -lm
 sudo chown root bmp.cgi
 sudo chmod +s bmp.cgi
 sudo cp bmp.cgi  /usr/lib/cgi-bin
+___________________________________________________________
+INA 219:
+
+sudo chown root ina.cgi;
+sudo chmod +s ina.cgi;
+sudo cp ina.cgi  /usr/lib/cgi-bin;
 ___________________________________________________________
 Prog:
 

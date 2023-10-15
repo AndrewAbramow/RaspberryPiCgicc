@@ -27,37 +27,35 @@ std::string exec(const char* cmd) {
 }
 
 int main () {
-
    std::map<std::string, std::string> commands;
    commands["bmp"] = "./bmp180.cgi";
    commands["ina"] = "./ina.cgi";
    commands["relayOn"] = "Relay is ON\n";
    cgicc::Cgicc formData;
-   // show input data on screen
+   // Set title
    std::cout << "Content-type:text/html\r\n\r\n";
    std::cout << "<html>\n";
    std::cout << "<head>\n";
    std::cout << "<title>Sensors data</title>\n";
    std::cout << "</head>\n";
-   std::cout << "<body>\n";
-       
+   std::cout << "<body>\n";       
    // current command
    cgicc::form_iterator fi = formData.getElement("cmd");  
    if( !fi->isEmpty() &&fi != (*formData).end()) {
       if(commands[fi->getValue()][2]=='b') {
-         // execute bash-script
-         std::cout << "Temperature = ";
+         // execute program
+         std::cout << "BMP180: ";
          std::cout<<exec(commands[fi->getValue()].c_str())<<std::endl;
          std::cout << "<br/>\n";
       }
       else if (commands[fi->getValue()][2]=='i') {
-         // execute bash-script
-         std::cout << "Voltage = ";
+         // execute program
+         std::cout << "INA219: ";
          std::cout<<exec(commands[fi->getValue()].c_str())<<std::endl;
          std::cout << "<br/>\n";
       }
       else {
-      // perform some internal logic
+      // execute another program or bash-script
          std::cout<<commands[fi->getValue()]<<std::endl;
       }
       std::cout << "<br/>\n";    
