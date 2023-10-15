@@ -16,7 +16,7 @@
 - Get temperature
 
 ![Alt text](Docs/ina.jpg)
-- get INA data
+- Get INA219 data
 
 ## Project goal
 
