@@ -30,9 +30,9 @@ Design a application layer between "low-level" sensor polling and "high-level" l
 
 ## Requirements
 
-STM32CubeIDE 1.11.0 or higher
-WiringPi
-Appache2
+- STM32CubeIDE 1.11.0 or higher
+- WiringPi
+- Appache2
 
 ## Installation
 
